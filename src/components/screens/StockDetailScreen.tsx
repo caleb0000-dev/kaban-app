@@ -34,7 +34,7 @@ export function StockDetailScreen({ stock = '$TEL', onBack, onJump, onOpenAdvanc
   const [chartToggle, setChartToggle] = useState<'price' | 'dividends'>('price');
   const [selectedCatalyst, setSelectedCatalyst] = useState<string | null>(null);
   
-  // FIX: Properly storing boundedX in state
+  // State perfectly matched to all calculated variables
   const [tooltip, setTooltip] = useState<{ key: string; boundedX: number; targetY: number; isTop: boolean; tailShift: number } | null>(null);
 
   const triggerTooltip = (e: React.MouseEvent, key: string) => {
@@ -45,6 +45,7 @@ export function StockDetailScreen({ stock = '$TEL', onBack, onJump, onOpenAdvanc
     const safePadding = 16;
     const targetX = rect.left + (rect.width / 2);
     
+    // Calculate boundaries
     let boundedX = targetX;
     if (targetX - tooltipHalfW < safePadding) boundedX = tooltipHalfW + safePadding;
     else if (targetX + tooltipHalfW > screenW - safePadding) boundedX = screenW - tooltipHalfW - safePadding;
@@ -53,7 +54,7 @@ export function StockDetailScreen({ stock = '$TEL', onBack, onJump, onOpenAdvanc
     const targetY = isTop ? rect.bottom + 10 : rect.top - 10;
     const tailShift = targetX - boundedX;
 
-    // FIX: Using boundedX directly here
+    // Use every variable here to satisfy TypeScript
     setTooltip({ key, boundedX, targetY, isTop, tailShift });
   };
 
