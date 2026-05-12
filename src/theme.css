@@ -1,0 +1,100 @@
+@custom-variant dark (&:is(.dark *));
+
+/* ── Kaban Sovereign Design System: Core Variables ────────────────── */
+:root {
+  --font-size: 16px;
+  
+  /* Strictly locked to Obsidian Matte */
+  --background: #0D0D0D;
+  --foreground: rgba(255, 255, 255, 0.9);
+  
+  --card: #0D0D0D;
+  --card-foreground: rgba(255, 255, 255, 0.9);
+  
+  --popover: #0D0D0D;
+  --popover-foreground: rgba(255, 255, 255, 0.9);
+  
+  /* Liquid Gold is the Primary Action color */
+  --primary: #D4AF37;
+  --primary-foreground: #0D0D0D;
+  
+  --secondary: rgba(255, 255, 255, 0.05);
+  --secondary-foreground: rgba(255, 255, 255, 0.9);
+  
+  --muted: rgba(255, 255, 255, 0.1);
+  --muted-foreground: rgba(255, 255, 255, 0.4);
+  
+  /* Jade Green for positive market accents */
+  --accent: #00A86B;
+  --accent-foreground: #FFFFFF;
+  
+  /* Bearish Red for destructive/negative market accents */
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.05);
+  --ring: #D4AF37;
+  
+  --radius: 1rem; /* Locked to 16px for iOS-style curves */
+}
+
+/* ── Tailwind v4 Inline Theme Mapping ─────────────────────────────── */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+/* ── Base Layer Rendering Engine ──────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html, body {
+    @apply bg-background text-foreground;
+    font-size: var(--font-size);
+    
+    /* Critical for mobile premium feel: prevents white glow on over-scroll */
+    overscroll-behavior-y: none;
+    
+    /* Critical for rendering 10px uppercase sub-headers crisply */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Custom text highlight for the entire app -> Liquid Gold */
+  ::selection {
+    background-color: rgba(212, 175, 55, 0.3);
+    color: #ffffff;
+  }
+
+  /* Default Typography overrides (Tailwind utility classes take precedence) */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+  }
+
+  p, label, button, input {
+    line-height: 1.5;
+  }
+}

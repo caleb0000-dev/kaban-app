@@ -1,0 +1,71 @@
+/* ── imports/tailwind.css ─────────────────────────────────────────────── */
+
+@import 'tailwindcss' source(none);
+@source '../**/*.{js,ts,jsx,tsx}';
+
+/* ── Sovereign Design System Custom Utilities ─────────────────────────── */
+@layer utilities {
+  
+  /* ── Ticker Marquee ── */
+  @keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-ticker {
+    animation: ticker-scroll 30s linear infinite;
+  }
+  .animate-ticker:hover {
+    animation-play-state: paused;
+  }
+
+  /* ── Jade Green Pulse (BIHASA center button) ── */
+  @keyframes jade-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(0,168,107,0.55), 0 0 18px rgba(0,168,107,0.35); }
+    60%  { box-shadow: 0 0 0 10px rgba(0,168,107,0), 0 0 28px rgba(0,168,107,0.5); }
+    100% { box-shadow: 0 0 0 0 rgba(0,168,107,0),  0 0 18px rgba(0,168,107,0.35); }
+  }
+  .animate-jade-pulse {
+    animation: jade-pulse 2.4s ease-in-out infinite;
+  }
+
+  /* ── Circuit Glow (Kaban Logo) ── */
+  @keyframes circuit-glow {
+    0%, 100% { filter: drop-shadow(0 0 3px rgba(212,175,55,0.4)); }
+    50%      { filter: drop-shadow(0 0 9px rgba(212,175,55,0.85)); }
+  }
+  .animate-circuit-glow {
+    animation: circuit-glow 3s ease-in-out infinite;
+  }
+
+  /* ── Fade-in-up (Deep Dive Drawers) ── */
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in-up {
+    animation: fade-in-up 0.38s ease-out forwards;
+  }
+
+  /* ── Pulse dot (Live Indicators) ── */
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.45; transform: scale(0.65); }
+  }
+  .animate-pulse-dot {
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  /* ── Hide scrollbar (Horizontal Carousels) ── */
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* ── CSS content-visibility for long lists (Discover Screen) ── */
+  .stock-row-lazy {
+    content-visibility: auto;
+    /* Synchronized with our new 64px hit target standard */
+    contain-intrinsic-size: 0 64px; 
+  }
+}

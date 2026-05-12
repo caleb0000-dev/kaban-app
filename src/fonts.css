@@ -1,0 +1,30 @@
+/* ── imports/fonts.css ─────────────────────────────────────────────── */
+
+/* Import 'Inter' as the premium geometric fallback for non-Apple devices */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    /* 1. -apple-system / BlinkMacSystemFont: Forces SF Pro on Mac/iOS
+      2. Inter: Our premium fallback
+      3. system-ui: Catches standard OS fonts
+    */
+    --font-kaban-sans: -apple-system, BlinkMacSystemFont, 'Inter', system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-kaban-sans);
+    
+    /* These properties are CRITICAL for the "Liquid Glass" premium feel. 
+       They force the browser to render the text as sharply as possible, 
+       preventing the "fuzzy" look on dark backgrounds. */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Ensure the Baybayin 'ᜃ' character renders properly if a system lacks the glyph */
+  .baybayin-glyph {
+    font-family: 'Noto Sans Tagalog', var(--font-kaban-sans);
+  }
+}
