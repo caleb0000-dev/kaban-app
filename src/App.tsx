@@ -1,5 +1,9 @@
 /* DevelopedByCaleb */
 import { useState, useEffect } from 'react';
+import LoginScreen from './components/auth/LoginScreen';
+import SignUpScreen from './components/auth/SignUpScreen';
+import ForgotPasswordScreen from './components/auth/ForgotPasswordScreen';
+
 import { ChevronDown, Lock, WifiOff, Loader2 } from 'lucide-react';
 import { FloatingTabBar, type TabId } from './components/FloatingTabBar';
 import { HomeScreen } from './components/screens/HomeScreen';
@@ -83,6 +87,7 @@ function MarketHeader() {
 }
 
 export default function App() {
+  const [authState, setAuthState] = useState<'login' | 'signup' | 'forgot-password' | 'authenticated'>('login');
   const [activeTab, setActiveTab] = useState<TabId>('kaban');
   const [watchlist, setWatchlist] = useState<Set<string>>(new Set(['$SM']));
   const [stockHistory, setStockHistory] = useState<string[]>([]);
@@ -115,6 +120,17 @@ export default function App() {
       setIsPopping(false);
     }, 400); 
   };
+
+
+  if (authState === 'login') {
+    return <LoginScreen onNavigate={setAuthState} />;
+  }
+  if (authState === 'signup') {
+    return <SignUpScreen onNavigate={setAuthState} />;
+  }
+  if (authState === 'forgot-password') {
+    return <ForgotPasswordScreen onNavigate={setAuthState} />;
+  }
 
   if (isAppLoading) {
     return (
